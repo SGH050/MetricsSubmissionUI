@@ -1,0 +1,37 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="87%" fxFlex.xs="100%" style="border: 1;">
+
+    <mat-card-title fxLayoutAlign="center center">Register a new Region</mat-card-title>
+
+    <form [formGroup]="registerForm" autocomplete="off" novalidate (ngSubmit)="register(registerForm.value)">
+
+      <mat-card-content fxLayout="column wrap">
+
+        <div flex fxLayoutGap="30px">
+          <mat-label><b>Patient Name</b></mat-label><br>
+          <mat-form-field>
+            <input matInput type="text" placeholder="FirstName" formControlName="firstName" id="firstName">
+            <mat-hint align="left">Not more then 50 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('firstName', 'required')">Name is required</mat-error>
+            <mat-error *ngIf="hasError('firstName', 'maxlength')">You have more than 50 characters</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="LastName" formControlName="lastName" id="lastName">
+            <mat-hint align="left">Not more then 50 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('lastName', 'required')">Last Name is required</mat-error>
+            <mat-error *ngIf="hasError('lastName', 'maxlength')">You have more than 50 characters</mat-error>
+          </mat-form-field>
+        </div>
+
+
+      </mat-card-content>
+
+      <mat-card-actions style="text-align: center;">
+        <button mat-raised-button color="primary">Register</button>
+        <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+      </mat-card-actions>
+
+    </form>
+
+  </mat-card>
+</section>
