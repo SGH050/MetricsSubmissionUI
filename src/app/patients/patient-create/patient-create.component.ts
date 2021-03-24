@@ -10,6 +10,7 @@ import { GENDER, MARITAL_STATUS, DISEASE_TYPE, EXCERCISE_TYPE, USAGE_TYPE, YES_N
 import { MessageBox, MessageBoxButton } from 'src/app/shared/message-box';
 import { Router } from '@angular/router';
 import { SubGroup } from 'src/app/model/SubGroup';
+import { Region } from 'src/app/model/region';
 
 @Component({
   selector: 'app-patient-create',
@@ -43,25 +44,7 @@ export class PatientCreateComponent implements OnInit {
 
     this.registerForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      lastName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      line1: new FormControl('', [Validators.required, Validators.maxLength(150)]),
-      line2: new FormControl('', [Validators.maxLength(150)]),
-      city: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      state: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      zip: new FormControl('', [Validators.required, Validators.maxLength(6), Validators.pattern("[0-9]{6}")]),
-      gender: new FormControl('', [Validators.required]),
-      dateOfBirth: new FormControl('', [Validators.required]),
-      mailId: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.email]),
-      phone: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.pattern("[0-9]{10}")]),
-      maritalStatus: new FormControl('', [Validators.required]),
-      activity: new FormControl('', [Validators.required]),
-      tobacoUse: new FormControl('', [Validators.required]),
-      alchoholUse: new FormControl('', [Validators.required]),
-      caffineUse: new FormControl('', [Validators.required]),
-      allergies: new FormControl('', [Validators.required]),
-      diet: new FormControl('', [Validators.required]),
-      height: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]),
-      weight: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')])
+      lastName: new FormControl('', [Validators.required, Validators.maxLength(50)])
     });
 
   }
@@ -73,13 +56,13 @@ export class PatientCreateComponent implements OnInit {
   public register(registerFormValue) {
     if (this.registerForm.valid) {
       var subGroup = new SubGroup;
-      var patientName = new PatientName;
+      var region = new Region;
       subGroup.id = registerFormValue.firstName;
-      subGroup.region.regionName = registerFormValue.lastName;
+      region.regionName = registerFormValue.lastName;
     
       
 
-      this.service.saveSubGroup(subGroup).subscribe(
+      this.service.saveSubGroup(subGroup,region).subscribe(
         response => {
           MessageBox.show(this.dialog, "Alert", 'Successfully added the reord', MessageBoxButton.Ok, "350px")
             .subscribe(result => {

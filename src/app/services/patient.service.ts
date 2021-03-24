@@ -4,6 +4,7 @@ import { FIND_ALL_REGION, API_URL, GET_ALL_PATIENT_URL, CREATE_PATIENT_URL, UPDA
 import { Patient } from '../model/patient';
 import { Observable } from 'rxjs';
 import { SubGroup } from '../model/SubGroup';
+import { Region } from '../model/region';
 
 
 @Injectable({
@@ -30,8 +31,8 @@ export class PatientService {
   saveData(patient: Patient): Observable<any> {
     return this.http.post(`${API_URL}/${CREATE_PATIENT_URL}`, patient, { responseType: 'text' as 'json' });
   }
-  saveSubGroup(subGroup: SubGroup): Observable<any> {
-    return this.http.post(`${API_URL}/${ADD_ONE_SUB_GROUP}/${subGroup.id}`, subGroup.region.regionName);
+  saveSubGroup(subGroup: SubGroup, region: Region): Observable<any> {
+    return this.http.post(`${API_URL}/${ADD_ONE_SUB_GROUP}/${subGroup.id}`, region.regionName);
   }
   updateData(id: String, patient: Patient): Observable<any> {
     return this.http.put(`${API_URL}/${UPDATE_PATIENT_URL}/${id}`, patient);
