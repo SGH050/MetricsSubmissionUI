@@ -57,8 +57,9 @@ export class PatientCreateComponent implements OnInit {
     if (this.registerForm.valid) {
       var subGroup = new SubGroup;
       var region = new Region;
-      subGroup.id = registerFormValue.firstName;
-      region.regionName = registerFormValue.lastName;
+      region.id = registerFormValue.firstName;
+      subGroup.subGroupName = registerFormValue.lastName;
+      subGroup.id = 0;
     
       
 

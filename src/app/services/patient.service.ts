@@ -32,7 +32,9 @@ export class PatientService {
     return this.http.post(`${API_URL}/${CREATE_PATIENT_URL}`, patient, { responseType: 'text' as 'json' });
   }
   saveSubGroup(subGroup: SubGroup, region: Region): Observable<any> {
-    return this.http.post(`${API_URL}/${ADD_ONE_SUB_GROUP}/${subGroup.id}`, region.regionName);
+    console.log(region.id);
+    console.log(subGroup.subGroupName);
+    return this.http.post(`${API_URL}/${ADD_ONE_SUB_GROUP}/${region.id}`, subGroup);
   }
   updateData(id: String, patient: Patient): Observable<any> {
     return this.http.put(`${API_URL}/${UPDATE_PATIENT_URL}/${id}`, patient);

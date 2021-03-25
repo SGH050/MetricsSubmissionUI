@@ -3,4 +3,5 @@ export class SubGroup {
 
     id: number;
     region: Region;
+    subGroupName: String;
 }
